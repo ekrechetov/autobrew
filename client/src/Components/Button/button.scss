@@ -1,0 +1,19 @@
+.btn {
+  display: inline-block;
+  min-width: 150px;
+  background-color: rgb(155, 214, 149);
+  margin: 30px;
+  padding: 10px;
+  font-size: 26px;
+  text-align: center;
+  color: rgb(7, 49, 139);
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid rgb(6, 82, 245);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+.active {
+    background-color: red;
+    box-shadow: 0 0 15px rgba(255, 0, 0,0.5);
+  }

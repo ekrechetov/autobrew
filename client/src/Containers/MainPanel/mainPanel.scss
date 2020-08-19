@@ -1,0 +1,24 @@
+.main {
+  background-color: rgb(45, 97, 209);
+  border-radius: 20px;
+  flex-basis: 90%;
+  max-width: 980px;
+  padding: 90px;
+
+  &-title {
+    margin-bottom: 100px;
+    font-size: 40px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  &-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    &-item {
+      // border: 1px solid rgb(6, 82, 245);
+      // border-radius: 5px;
+      // box-shadow: 0 0 10px rgba(250, 138, 34, 0.5);
+    }
+  }
+}
