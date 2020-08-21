@@ -1,34 +1,48 @@
 import React, { useState } from 'react'
 import { API } from '../../api/api'
-import Button from '../../Components/Button/Button'
+import Button from '../../components/Button/Button'
 import './mainPanel.scss'
-
-const getParams = async () => {
-  const result = await API.get({ url: '/params'});
-  console.log('status: ', result.status);
-  console.log('statusText: ', result.statusText);
-}
 
 const MainPanel = () => {
 
   const [isEnabledLamp1, setModeLamp1] = useState(false)
   const [isEnabledLamp2, setModeLamp2] = useState(false)
-  // const [isEnabledLamp3, setModeLamp3] = useState(false)
+  const [isEnabledLamp3, setModeLamp3] = useState(false)
 
   const toggleLamp1 = async () => {
     setModeLamp1(!isEnabledLamp1);
-    const result = await API.put({ url: '/lamps', data: {lamp1: !isEnabledLamp1}});
-    console.log('status: ', result.status);
-    console.log('statusText: ', result.statusText);
-    console.log('data: ', !isEnabledLamp1);    
+    const result = await API.put({ url: '/lamps/1', data: {lamp1: !isEnabledLamp1}});
+    if(result) {
+      console.log('status: ', result.status);
+      console.log('statusText: ', result.statusText);
+      console.log('data: ', !isEnabledLamp1);
+    } else {
+      console.log('Error request')
+    }   
   }
 
   const toggleLamp2 = async () => {
     setModeLamp2(!isEnabledLamp2);
-    const result = await API.put({ url: '/lamps', data: {lamp2: !isEnabledLamp2}});
-    console.log('status: ', result.status);
-    console.log('statusText: ', result.statusText);
-    console.log('data: ', !isEnabledLamp2);
+    const result = await API.put({ url: '/lamps/2', data: {lamp2: !isEnabledLamp2}});
+    if(result) {
+      console.log('status: ', result.status);
+      console.log('statusText: ', result.statusText);
+      console.log('data: ', !isEnabledLamp2);
+    } else {
+      console.log('Error request')
+    }
+  }
+
+  const toggleLamp3 = async () => {
+    setModeLamp3(!isEnabledLamp3);
+    const result = await API.put({ url: '/lamps/3', data: {lamp3: !isEnabledLamp3}});
+    if(result) {
+      console.log('status: ', result.status);
+      console.log('statusText: ', result.statusText);
+      console.log('data: ', !isEnabledLamp3);
+    } else {
+      console.log('Error request')
+    }
   }
 
   return (
@@ -37,7 +51,7 @@ const MainPanel = () => {
       <ul className="main-content">
         <li className="main-content-item"><Button text="# 1" onClick={toggleLamp1} isActive={isEnabledLamp1} /></li>
         <li className="main-content-item"><Button text="# 2" onClick={toggleLamp2} isActive={isEnabledLamp2}/></li>
-        <li className="main-content-item"><Button text="# 3" onClick={getParams}/></li>
+        <li className="main-content-item"><Button text="# 3" onClick={toggleLamp3} isActive={isEnabledLamp3}/></li>
       </ul>
     </div>
   );
