@@ -1,6 +1,5 @@
 import React from 'react'
-import { TemperatureProvider } from './context/temperatureContext'
-
+import { WebSocketProvider } from './context/webSocketContext'
 import './reset.scss'
 import './app.scss'
 import MainPanel from './containers/MainPanel/MainPanel'
@@ -8,9 +7,9 @@ import MainPanel from './containers/MainPanel/MainPanel'
 const App = () => {
   return (
     <div className="app">
-      <TemperatureProvider>
+      <WebSocketProvider>
         <MainPanel />
-      </TemperatureProvider>
+      </WebSocketProvider>
     </div>
   )
 }

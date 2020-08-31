@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react'
 import { API } from '../../api/api'
-import { TemperatureContext } from '../../context/temperatureContext'
+import { webSocketContext } from '../../context/webSocketContext'
 import Button from '../../components/Button/Button'
 import DataDisplay from '../../components/DataDisplay/DataDisplay'
 import './mainPanel.scss'
 
 const MainPanel = () => {
 
-  const temperature = useContext(TemperatureContext)
-  const currentTemperature = temperature.currentTemperature
+  const socketContext = useContext(webSocketContext)
+  const currentTemperature = socketContext.temperature
 
   const [isEnabledLamp1, setModeLamp1] = useState(false)
   const [isEnabledLamp2, setModeLamp2] = useState(false)
