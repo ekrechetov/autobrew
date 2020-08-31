@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { API } from '../../api/api'
+import { TemperatureContext } from '../../context/temperatureContext'
 import Button from '../../components/Button/Button'
+import DataDisplay from '../../components/DataDisplay/DataDisplay'
 import './mainPanel.scss'
 
 const MainPanel = () => {
+
+  const temperature = useContext(TemperatureContext)
+  const currentTemperature = temperature.currentTemperature
 
   const [isEnabledLamp1, setModeLamp1] = useState(false)
   const [isEnabledLamp2, setModeLamp2] = useState(false)
@@ -45,6 +50,17 @@ const MainPanel = () => {
     }
   }
 
+  const getTemperature = async () => {
+    const result = await API.get({ url: '/params' });
+    if(result) {
+      console.log('status: ', result.status);
+      console.log('statusText: ', result.statusText);
+      console.log('data : ', result);
+    } else {
+      console.log('Error request')
+    }
+  }
+
   return (
     <div className="main">
       <h1 className="main-title">Control panel</h1>
@@ -52,6 +68,8 @@ const MainPanel = () => {
         <li className="main-content-item"><Button text="# 1" onClick={toggleLamp1} isActive={isEnabledLamp1} /></li>
         <li className="main-content-item"><Button text="# 2" onClick={toggleLamp2} isActive={isEnabledLamp2}/></li>
         <li className="main-content-item"><Button text="# 3" onClick={toggleLamp3} isActive={isEnabledLamp3}/></li>
+        <li className="main-content-item"><DataDisplay temperature={currentTemperature}/></li>       
+        <li className="main-content-item"><Button text="Get temperature" onClick={getTemperature}/></li>
       </ul>
     </div>
   );
