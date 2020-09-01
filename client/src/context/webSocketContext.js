@@ -1,20 +1,18 @@
-import React, { createContext, useState, useEffect, useContext } from 'react'
-import { API_URL } from '../config'
+import React, { createContext, useState, useEffect } from 'react'
+import { config } from '../config'
 import io from 'socket.io-client'
 
-// const socket = io(API_URL)
-const socket = io()
+const socket = io(config.API_URL)
 
 const webSocketContext = createContext()
 
 const WebSocketProvider = (props) => {
-  
-
+  console.log('API_URL', config.API_URL)
   const [temperature, setTemperature] = useState(null)
 
-  useContext(() => {
-    socket.on('message', (temperature) => {
-      console.log('Message from server: ', temperature)
+  useEffect(() => {
+    socket.on('changeTemperature', (temperature) => {
+      console.log('new t from server: ', temperature)
       setTemperature(temperature)
     })
   })
