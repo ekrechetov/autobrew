@@ -99,20 +99,20 @@ response.send(`Lamp 3 is ${request.body.lamp3}`);
 //socket: генерируется событие connection
 io.on('connection', (socket) => {
   console.log(`Client with id ${socket.id} connected`);
-  
-// get temperature and send to client
-  let t = 0;
-  setInterval(() => {
-    //let newT = temperature.getTemperature(); //uncomment!!!!!!!
-    console.log('t = ', t);
-    socket.emit('newTemperature', t)
-    t += 1
-    if (t === 15) t = 0; 
-  }, 3000);
 
+  socket.on('subscribeThermosensor', (interval) => {
+    let t = 0;
+    setInterval(() => {
+      //let newT = temperature.getTemperature(); //uncomment!!!!!!!
+      console.log('t = ', t);
+      socket.emit('newTemperature', t)
+      t += 1
+      if (t === 11) t = 0; 
+    }, interval);
+  })
+  
   //socket.emit('message', "I'm server")
 });
-
 
 //app.listen(port, host, (req, res) => {
 server.listen(port, host, (req, res) => {

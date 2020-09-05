@@ -1,5 +1,7 @@
+import io from 'socket.io-client'
 import { config } from '../config'
 import * as api from './request'
+const socket = io(config.API_URL)
 
 const post = async ({ url, data }) => {
   return await api.request({
@@ -21,7 +23,7 @@ const patch = async ({ url, data, headers = [] }) => {
     method: 'PATCH',
     resource: url,
     data: data,
-    headers: headers,
+    // headers: headers,
   })
 }
 
@@ -38,8 +40,19 @@ const remove = async ({ url,headers = [] }) => {
   return await api.request({
     method: 'DELETE',
     resource: url,
-    headers: headers,
+    // headers: headers,
   })
+}
+
+const subscribeThermosensor = (callBack) => {
+
+  socket.on('newTemperature', (temperature) => {
+      callBack(temperature)
+      console.log('new t from server: ', temperature)
+    }
+  )
+
+  socket.emit('subscribeThermosensor', 2000);
 }
 
 export const API = {
@@ -48,6 +61,5 @@ export const API = {
   get,
   remove,
   put,
-  SECRET_KEY: config.SECRET_KEY,
-  PUSH_AUTHORIZATION_KEY: config.PUSH_AUTHORIZATION_KEY,
+  subscribeThermosensor,
 }

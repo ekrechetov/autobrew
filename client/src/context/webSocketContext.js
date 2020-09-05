@@ -1,8 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react'
-import { config } from '../config'
-import io from 'socket.io-client'
-
-const socket = io(config.API_URL)
+import { API } from '../api/api'
 
 const webSocketContext = createContext()
 
@@ -11,17 +8,12 @@ const WebSocketProvider = (props) => {
   const [temperature, setTemperature] = useState(null)
 
   useEffect(() => {
-    socket.on('newTemperature', (temperature) => {
-      setTemperature(temperature)
-    })
-    console.log('new t from server: ', temperature)
-  }, [temperature])
-
-  // const [error, setError] = useState(null)
+    API.subscribeThermosensor( (t) => {
+      return setTemperature(t);
+    } )
+  }, [])
 
   const context = {
-    //error: error,
-    //setError: setError,
     temperature: temperature,
     setTemperature: setTemperature,
 
