@@ -62,16 +62,31 @@ const MainPanel = () => {
   }
 
   return (
-    <div className="main">
+    <main className="main">
       <h1 className="main-title">Control panel</h1>
-      <ul className="main-content">
-        <li className="main-content-item"><Button text="# 1" onClick={toggleLamp1} isActive={isEnabledLamp1} /></li>
-        <li className="main-content-item"><Button text="# 2" onClick={toggleLamp2} isActive={isEnabledLamp2}/></li>
-        <li className="main-content-item"><Button text="# 3" onClick={toggleLamp3} isActive={isEnabledLamp3}/></li>
-        <li className="main-content-item"><DataDisplay temperature={currentTemperature}/></li>       
-        <li className="main-content-item"><Button text="Get temperature" onClick={getTemperature}/></li>
-      </ul>
-    </div>
+      <section className="main-content">
+        <div className="main-content-param">
+          <h2 className="main-content-param-title">Lamps on/off</h2>
+          <ul className="main-content-param-list">
+            <li className="main-content-param-list-item"><Button text="# 1" onClick={toggleLamp1} isActive={isEnabledLamp1} /></li>
+            <li className="main-content-param-list-item"><Button text="# 2" onClick={toggleLamp2} isActive={isEnabledLamp2}/></li>
+            <li className="main-content-param-list-item"><Button text="# 3" onClick={toggleLamp3} isActive={isEnabledLamp3}/></li>
+          </ul>
+        </div>
+        <div className="main-content-param">
+          <h2 className="main-content-param-title">Temperature</h2>
+          <ul className="main-content-param-list">
+            <li className="main-content-param-list-item">
+              <h3>Sensor #1 temperature on-line monitoring</h3>
+              <DataDisplay temperature={currentTemperature}/>
+            </li>       
+            <li className="main-content-paramcd-list-item">
+              <Button text="Sensor #2" onClick={getTemperature}/>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
   );
 }
 

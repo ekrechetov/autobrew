@@ -104,13 +104,11 @@ io.on('connection', (socket) => {
   let t = 0;
   setInterval(() => {
     //let newT = temperature.getTemperature(); //uncomment!!!!!!!
-    let newT = t + 1; // remove!!!!!!!
-    if(newT !== t) {
-      console.log('t = ', newT);
-      socket.emit('changeTemperature', newT)
-      t =+ 1 
-    }  
-  }, 1000);
+    console.log('t = ', t);
+    socket.emit('newTemperature', t)
+    t += 1
+    if (t === 15) t = 0; 
+  }, 3000);
 
   //socket.emit('message', "I'm server")
 });

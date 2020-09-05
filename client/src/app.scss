@@ -1,8 +1,22 @@
+html {
+  // height: 100vh;
+}
+body {
+  // background-color: black;
+  // height: 100vh;
+  // padding: 10px;
+  // box-sizing: border-box;
+}
 .app {
-  background-color: black;
+  background-color: rgb(6, 4, 48);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 20px;
+  border-top: 1px solid rgb(191, 221, 245);
+  border-right: 1px solid rgb(191, 221, 245);
+  border-bottom: 1px solid rgb(191, 221, 245);
+  border-left: 1px solid rgb(125, 141, 153);
+  box-sizing: border-box;
+  // padding: 10px;
 }

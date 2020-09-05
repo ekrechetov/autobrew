@@ -1,24 +1,44 @@
 .main {
-  background-color: rgb(45, 97, 209);
-  border-radius: 20px;
-  flex-basis: 90%;
+  // background-color: rgb(45, 97, 209);
+  border: 1px solid rgb(191, 221, 245);
+  flex-basis: 80%;
   max-width: 980px;
-  padding: 90px;
+  // padding: 30px;
 
   &-title {
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     font-size: 40px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    color: rgb(99, 153, 253);
   }
   &-content {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    &-item {
-      // border: 1px solid rgb(6, 82, 245);
-      // border-radius: 5px;
-      // box-shadow: 0 0 10px rgba(250, 138, 34, 0.5);
+    justify-content: space-between;
+
+    &-param {
+
+      &-title {
+        margin-bottom: 30px;
+        font-size: 24px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+      }
+
+      &-list {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        background-color: rgb(99, 153, 253);
+
+        &-item {
+          // border: 1px solid rgb(6, 82, 245);
+          // border-radius: 5px;
+          // box-shadow: 0 0 10px rgba(250, 138, 34, 0.5);
+        }
+      }
     }
   }
 }

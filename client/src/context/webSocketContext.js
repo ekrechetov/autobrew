@@ -7,15 +7,15 @@ const socket = io(config.API_URL)
 const webSocketContext = createContext()
 
 const WebSocketProvider = (props) => {
-  console.log('API_URL', config.API_URL)
+
   const [temperature, setTemperature] = useState(null)
 
   useEffect(() => {
-    socket.on('changeTemperature', (temperature) => {
-      console.log('new t from server: ', temperature)
+    socket.on('newTemperature', (temperature) => {
       setTemperature(temperature)
     })
-  })
+    console.log('new t from server: ', temperature)
+  }, [temperature])
 
   // const [error, setError] = useState(null)
 
