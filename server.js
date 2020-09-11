@@ -19,6 +19,10 @@ const pinLamp1 = 16;
 const pinLamp2 = 20;
 const pinLamp3 = 21;
 
+//thermo-sensors id init
+const SENSOR_ID_1 = '28-000004f8f271';
+const SENSOR_ID_2 = '28-0310977961a3';
+
 //const isPinExported = gpio.checkExport(pinLamp1); //uncomment for production
 const isPinExported = true; //remove for production
 
@@ -103,14 +107,18 @@ io.on('connection', (socket) => {
   socket.on('subscribeThermosensor', (interval) => {
     let t = 0;
     setInterval(() => {
-      //let newT = temperature.getTemperature(); //uncomment!!!!!!!
+      //let newT = temperature.getTemperature(SENSOR_ID_1); //uncomment!!!!!!!
       console.log('t = ', t);
       socket.emit('newTemperature', t)
       t += 1
       if (t === 11) t = 0; 
     }, interval);
+  });
+  socket.on('getTemperature2', () => {
+    //let newT2 = temperature.getTemperature(SENSOR_ID_2); //uncomment!!!!!!!
+    let newT2 = 14;//to comment
+    socket.emit('newTemperature2', newT2)
   })
-  
   //socket.emit('message', "I'm server")
 });
 

@@ -8,11 +8,16 @@ import './mainPanel.scss'
 const MainPanel = () => {
 
   const socketContext = useContext(webSocketContext)
-  const currentTemperature = socketContext.temperature
+  const currentTemperature1 = socketContext.temperature1
+  const currentTemperature2 = socketContext.temperature2
+  
 
   const [isEnabledLamp1, setModeLamp1] = useState(false)
   const [isEnabledLamp2, setModeLamp2] = useState(false)
   const [isEnabledLamp3, setModeLamp3] = useState(false)
+
+  const [isTherm2Active, setIsTherm2Active] = useState(false)
+
 
   const toggleLamp1 = async () => {
     setModeLamp1(!isEnabledLamp1);
@@ -50,15 +55,9 @@ const MainPanel = () => {
     }
   }
 
-  const getTemperature = async () => {
-    const result = await API.get({ url: '/params' });
-    if(result) {
-      console.log('status: ', result.status);
-      console.log('statusText: ', result.statusText);
-      console.log('data : ', result);
-    } else {
-      console.log('Error request')
-    }
+  const getTemperature2 =  () => {
+    socketContext.getTemperature2()
+    setIsTherm2Active(!isTherm2Active)
   }
 
   return (
@@ -66,28 +65,45 @@ const MainPanel = () => {
       <h1 className="main-title">Control panel</h1>
       <section className="main-content">
         <div className="main-content-param">
-          <h2 className="main-content-param-title">Lamps on/off</h2>
+          <h2 className="main-content-param-title">Lamps</h2>
           <ul className="main-content-param-list">
             <li className="main-content-param-list-item"><Button text="# 1" onClick={toggleLamp1} isActive={isEnabledLamp1} /></li>
             <li className="main-content-param-list-item"><Button text="# 2" onClick={toggleLamp2} isActive={isEnabledLamp2}/></li>
             <li className="main-content-param-list-item"><Button text="# 3" onClick={toggleLamp3} isActive={isEnabledLamp3}/></li>
           </ul>
         </div>
+        
         <div className="main-content-param">
-          <h2 className="main-content-param-title">Temperature</h2>
+          <h2 className="main-content-param-title">Thermo-sensor # 1</h2>
           <ul className="main-content-param-list">
             <li className="main-content-param-list-item">
-              <h3>Sensor #1 temperature on-line monitoring</h3>
-              <DataDisplay temperature={currentTemperature}/>
-            </li>       
-            <li className="main-content-paramcd-list-item">
-              <Button text="Sensor #2" onClick={getTemperature}/>
+              <p className="main-content-param-list-title">on-line monitoring:</p>
             </li>
+            <li className="main-content-param-list-item">
+              <DataDisplay temperature={currentTemperature1}/>
+            </li>       
+          </ul>          
+        </div>
+        
+        <div className="main-content-param">
+          <h2 className="main-content-param-title">Thermo-sensor # 2</h2>
+
+          <ul className="main-content-param-list">
+            <li className="main-content-param-list-item">
+              <Button text="Check" onClick={getTemperature2} isActive={isTherm2Active}/>
+            </li>            
+            <li className="main-content-param-list-item">
+              { isTherm2Active
+                ? <DataDisplay temperature={currentTemperature2} />
+                : null
+              }
+              </li>
           </ul>
         </div>
+
       </section>
     </main>
-  );
+  )
 }
 
 export default MainPanel

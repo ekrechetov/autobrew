@@ -1,13 +1,10 @@
 .btn {
-  display: inline-block;
-  min-width: 140px;
-  max-width: 150px;
-  background-color: rgb(155, 214, 149);
-  margin: 30px;
+  background-color: rgb(85, 156, 250);
+  margin: 20px;
   padding: 10px;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
-  color: rgb(7, 49, 139);
+  color: rgb(6, 4, 48);
   font-family: Arial, Helvetica, sans-serif;
   border: 1px solid rgb(6, 82, 245);
   border-radius: 5px;
@@ -15,7 +12,7 @@
   cursor: pointer;
 }
 .active {
-    background-color: red;
-    box-shadow: 0 0 15px rgba(255, 0, 0,0.5);
+    background-color: rgb(255, 255, 0);
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
     border-color: red;
   }

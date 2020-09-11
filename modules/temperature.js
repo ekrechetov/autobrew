@@ -1,9 +1,8 @@
 //get temperature from DS18b20 sensor
 const fs = require("fs");
 const PATH = '/sys/bus/w1/devices/';
-const sensorId = '28-000004f8f271';
 
-exports.getTemperature = () => {
+exports.getTemperature = (sensorId) => {
   let temperature = fs.readFileSync(PATH + sensorId + '/w1_slave', 'utf8');
   let isT = /YES/.test(temperature);
   if(isT) {
@@ -12,7 +11,7 @@ exports.getTemperature = () => {
 	console.log(isT);	
 	console.log(`temperature: ${temperature} C`);	
   } else {
-	  console.log('get temperature error');
-	}
+	  	console.log('get temperature error');
+  	}
   return temperature; 
 }
