@@ -4,7 +4,7 @@ import './dataDisplay.scss'
 const DataDisplay = (props) => {
 
   return(
-    <div className={`data-display ${props.temperature >= 8 && 'danger'}`}>
+    <div className={`data-display ${props.temperature >= 30 && 'danger'}`}>
       {props.temperature} &deg;C
     </div>
   )
